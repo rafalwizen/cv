@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafał Wiżeń — Full-Stack Software Engineer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #1a1a2e;
+      --accent: #0f62fe;
+      --accent-light: #e8f0fe;
+      --text: #2d2d2d;
+      --text-muted: #6b7280;
+      --bg: #ffffff;
+      --bg-section: #f8f9fb;
+      --border: #e5e7eb;
+      --radius: 8px;
+    }
+
+    html { font-size: 15px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: #e5e7eb;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: var(--bg);
+      box-shadow: 0 4px 24px rgba(0,0,0,.12);
+    }
+
+    /* ── Header ──────────────────────────────────── */
+    .header {
+      background: var(--primary);
+      color: #fff;
+      padding: 2.5rem 3rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .header .subtitle {
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.7);
+      margin-top: .15rem;
+    }
+
+    .contact-bar {
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      font-size: .85rem;
+      color: rgba(255,255,255,.85);
+    }
+
+    .contact-bar a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      transition: color .2s;
+    }
+
+    .contact-bar a:hover { color: #fff; }
+
+    .contact-bar svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .header-photo {
+      width: 100px;
+      height: 100px;
+      transform: scale(1.2);
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,.2);
+      flex-shrink: 0;
+    }
+
+    /* ── Layout ──────────────────────────────────── */
+    .body-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 0;
+    }
+
+    .main-col { padding: 2rem 2.5rem 2.5rem; }
+    .side-col {
+      padding: 2rem 2rem 2.5rem;
+      background: var(--bg-section);
+      border-left: 1px solid var(--border);
+    }
+
+    /* ── Sections ────────────────────────────────── */
+    .section { margin-bottom: 2rem; }
+    .section:last-child { margin-bottom: 0; }
+
+    .section-title {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── About ───────────────────────────────────── */
+    .about p {
+      font-size: .95rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Experience ──────────────────────────────── */
+    .job { margin-bottom: 1.5rem; }
+    .job:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: .35rem;
+    }
+
+    .job-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .job-company {
+      font-size: .95rem;
+      color: var(--text-muted);
+    }
+
+    .job-date {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .job-list {
+      list-style: none;
+      margin-top: .6rem;
+    }
+
+    .job-list li {
+      position: relative;
+      padding-left: 1rem;
+      font-size: .9rem;
+      color: var(--text);
+      margin-bottom: .3rem;
+    }
+
+    .job-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: .6em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .tech-label {
+      font-size: .85rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      color: var(--text);
+      break-before: page;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .7rem;
+    }
+
+    .tech-tag {
+      font-size: .75rem;
+      font-weight: 500;
+      padding: .2rem .6rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 4px;
+    }
+
+    .achievements-title {
+      font-size: .85rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      color: var(--text);
+    }
+
+    .achievements-list {
+      list-style: none;
+      margin-top: .4rem;
+    }
+
+    .achievements-list li {
+      position: relative;
+      padding-left: 1rem;
+      font-size: .9rem;
+      color: var(--text);
+      margin-bottom: .3rem;
+    }
+
+    .achievements-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: .6em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    /* ── Education ───────────────────────────────── */
+    .edu { margin-bottom: 1rem; }
+    .edu:last-child { margin-bottom: 0; }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: .15rem;
+    }
+
+    .edu-degree {
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    .edu-date {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .edu-school {
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Skills ──────────────────────────────────── */
+    .skill-group { margin-bottom: 1.2rem; }
+    .skill-group:last-child { margin-bottom: 0; }
+
+    .skill-group-title {
+      font-size: .85rem;
+      font-weight: 600;
+      margin-bottom: .4rem;
+      color: var(--text);
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+    }
+
+    .skill-pill {
+      font-size: .78rem;
+      font-weight: 500;
+      padding: .2rem .55rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+    }
+
+    /* ── Languages ───────────────────────────────── */
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .9rem;
+      padding: .3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lang-item:last-child { border-bottom: none; }
+
+    .lang-level {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: .8rem;
+    }
+
+    /* ── Interests ───────────────────────────────── */
+    .interests-list {
+      list-style: none;
+    }
+
+    .interests-list li {
+      font-size: .85rem;
+      color: var(--text-muted);
+      padding: .25rem 0;
+      padding-left: .9rem;
+      position: relative;
+    }
+
+    .interests-list li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Courses ─────────────────────────────────── */
+    .course-item {
+      margin-bottom: .8rem;
+    }
+    .course-item:last-child { margin-bottom: 0; }
+
+    .course-name {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .course-detail {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: .4rem;
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    .course-date {
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .course-cert {
+      font-size: .75rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .course-cert:hover { text-decoration: underline; }
+
+    /* ── Print ───────────────────────────────────── */
+    @media print {
+      @page { margin: 0; }
+      body { background: #fff; margin: 0; }
+      .page { box-shadow: none; max-width: none; }
+      .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    @media (max-width: 700px) {
+      .body-grid { grid-template-columns: 1fr; }
+      .side-col { border-left: none; border-top: 1px solid var(--border); }
+      .header { flex-direction: column; text-align: center; }
+      .contact-bar { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <div>
+      <h1>Rafał Wiżeń</h1>
+      <div class="subtitle">Full-Stack Software Engineer · Java & React</div>
+    </div>
+    <img src="photo.jpg" alt="Rafał Wiżeń" class="header-photo">
+    <div class="contact-bar">
+      <a href="tel:+48726593099">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.65 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.76.29 1.55.52 2.36.65a2 2 0 0 1 1.72 2.02z"/></svg>
+        726 593 099
+      </a>
+      <a href="mailto:rafal.wizen@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+        rafal.wizen@gmail.com
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Tarnowskie Góry
+      </a>
+      <a href="https://www.linkedin.com/in/rafa%C5%82-wi%C5%BCe%C5%84-637357258/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/rafalwizen" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <div class="body-grid">
+
+    <!-- Main column -->
+    <div class="main-col">
+
+      <!-- About -->
+      <div class="section about">
+        <div class="section-title">About me</div>
+        <p>
+          Software developer with over five years of professional experience building full-stack applications.
+          Comfortable working across the entire lifecycle — from gathering business requirements through
+          implementation to production support. Experienced in coordinating directly with clients to align
+          expectations and deliver solutions that satisfy real business needs. Passionate about clean architecture,
+          well-designed APIs, and continuous learning.
+        </p>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <div class="section-title">Experience</div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <div class="job-title">Full-Stack Software Engineer</div>
+              <div class="job-company">MIKRONIKA Sp. z o.o.</div>
+            </div>
+            <div class="job-date">Nov 2020 — Present</div>
+          </div>
+
+          <ul class="job-list">
+            <li>Analyze and adjust business requirements in close collaboration with stakeholders</li>
+            <li>Design and implement new backend services and frontend components</li>
+            <li>Build and maintain RESTful API interfaces consumed by multiple client applications</li>
+            <li>Diagnose and resolve software defects across the full stack</li>
+            <li>Coordinate directly with clients to determine and satisfy their expectations</li>
+          </ul>
+
+          <div class="achievements-title">Key Achievements</div>
+          <ul class="achievements-list">
+            <li>Took over management of a project — acting as project owner, setting its direction and roadmap</li>
+            <li>Onboarded and mentored a new team member</li>
+            <li>Introduced automated tests to an existing project</li>
+            <li>Initiated occasional pair-programming sessions to evaluate team engagement and strengthen collaboration</li>
+            <li>Refactored legacy system-critical modules and extended them with new capabilities (e.g., permission groups for an existing legacy permissions module)</li>
+          </ul>
+
+          <div class="tech-label">Technologies</div>
+          <div class="tech-tags">
+            <span class="tech-tag">Java 21</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">Spring MVC</span>
+            <span class="tech-tag">Spring Security</span>
+            <span class="tech-tag">Hibernate</span>
+            <span class="tech-tag">Play Framework</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">AngularJS</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Oracle DB</span>
+            <span class="tech-tag">Git</span>
+            <span class="tech-tag">SVN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="section">
+        <div class="section-title">Education</div>
+
+        <div class="edu">
+          <div class="edu-header">
+            <div class="edu-degree">Bachelor of Computer Science — Programming Focus</div>
+            <div class="edu-date">Sep 2017 — Jan 2021</div>
+          </div>
+          <div class="edu-school">Academy of Computer Science and Management "Copernicus", Wrocław</div>
+        </div>
+      </div>
+
+      <!-- Side Projects -->
+      <div class="section">
+        <div class="section-title">Side Projects</div>
+        <p style="font-size:.9rem;color:var(--text);line-height:1.7;margin-bottom:.7rem;">
+          Personal projects built in spare time — frontend portfolios, web-scraping bots, and full-stack applications such as a movie search engine.
+        </p>
+        <a href="https://github.com/rafalwizen" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          github.com/rafalwizen
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Side column -->
+    <div class="side-col">
+
+      <!-- Skills -->
+      <div class="section">
+        <div class="section-title">Skills</div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Backend</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Java 21</span>
+            <span class="skill-pill">Spring Boot</span>
+            <span class="skill-pill">Spring MVC</span>
+            <span class="skill-pill">Spring Security</span>
+            <span class="skill-pill">Hibernate</span>
+            <span class="skill-pill">Play</span>
+            <span class="skill-pill">Maven</span>
+            <span class="skill-pill">REST API</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Frontend</div>
+          <div class="skill-pills">
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">AngularJS</span>
+            <span class="skill-pill">Ant Design</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Databases</div>
+          <div class="skill-pills">
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">Oracle DBMS</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Other</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill">SVN</span>
+            <span class="skill-pill">Scrum</span>
+            <span class="skill-pill">Kanban</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Courses & Certifications -->
+      <div class="section">
+        <div class="section-title">Courses & Certifications</div>
+
+        <div class="course-item">
+          <div class="course-name">Droga Nowoczesnego Architekta</div>
+          <div class="course-detail">
+            <span>Devstyle.pl · <a href="https://raw.githubusercontent.com/rafalwizen/certificates/refs/heads/main/DNA_Rafa%C5%82_Wi%C5%BCe%C5%84.png" class="course-cert">Certificate</a></span>
+            <span class="course-date">23-01-2026</span>
+          </div>
+        </div>
+
+        <div class="course-item">
+          <div class="course-name">OWASP Top Ten</div>
+          <div class="course-detail">
+            <span>Sekurak.pl</span>
+            <span class="course-date">01-04-2026</span>
+          </div>
+        </div>
+
+        <div class="course-item">
+          <div class="course-name">Architekt Jutra</div>
+          <div class="course-detail">
+            <span>Devstyle.pl</span>
+            <span class="course-date">In progress</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practices & Tools -->
+      <div class="section">
+        <div class="section-title">Practices & Tools</div>
+        <div class="skill-pills">
+          <span class="skill-pill">AI-assisted development</span>
+          <span class="skill-pill">Knowledge base management</span>
+          <span class="skill-pill">Pair programming</span>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="section" style="break-before:page;padding-top:3rem">
+        <div class="section-title">Languages</div>
+        <div class="lang-item">
+          <span>English</span>
+          <span class="lang-level">C1</span>
+        </div>
+        <div class="lang-item">
+          <span>German</span>
+          <span class="lang-level">A2 · learning</span>
+        </div>
+        <div class="lang-item">
+          <span>Polish</span>
+          <span class="lang-level">Native</span>
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="section">
+        <div class="section-title">Interests</div>
+        <ul class="interests-list">
+          <li>Ancient &amp; modern history</li>
+          <li>Bible-related archaeology</li>
+          <li>Biology &amp; genetics</li>
+          <li>Teaching mathematics</li>
+          <li>Youth camps &amp; winter sports</li>
+          <li>German language</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
