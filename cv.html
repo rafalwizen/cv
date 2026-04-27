@@ -379,6 +379,14 @@
 
     .course-cert:hover { text-decoration: underline; }
 
+.course-name-en {
+  display: block;
+  font-size: .78rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
     /* ── Print ───────────────────────────────────── */
     @media print {
       @page { margin: 5px 0 0; }
@@ -601,7 +609,7 @@
         <div class="section-title">Courses & Certifications</div>
 
         <div class="course-item">
-          <div class="course-name">Droga Nowoczesnego Architekta</div>
+          <div class="course-name">Droga Nowoczesnego Architekta<span class="course-name-en">Designing Next-Gen Architecture</span></div>
           <div class="course-detail">
             <span>Devstyle.pl · <a href="https://raw.githubusercontent.com/rafalwizen/certificates/refs/heads/main/DNA_Rafa%C5%82_Wi%C5%BCe%C5%84.png" class="course-cert">Certificate</a></span>
             <span class="course-date">23-01-2026</span>
@@ -617,7 +625,7 @@
         </div>
 
         <div class="course-item">
-          <div class="course-name">Architekt Jutra</div>
+          <div class="course-name">Architekt Jutra<span class="course-name-en">Architect Of Tomorrow</span></div>
           <div class="course-detail">
             <span>Devstyle.pl</span>
             <span class="course-date">In progress</span>
