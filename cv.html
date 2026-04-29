@@ -277,7 +277,7 @@
     }
 
     /* ── Skills ──────────────────────────────────── */
-    .skill-group { margin-bottom: 1.2rem; }
+    .skill-group { margin-bottom: .8rem; }
     .skill-group:last-child { margin-bottom: 0; }
 
     .skill-group-title {
@@ -379,6 +379,14 @@
 
     .course-cert:hover { text-decoration: underline; }
 
+    .course-item,
+    .skill-group,
+    .lang-item,
+    .side-col .section {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
 .course-name-en {
   display: block;
   font-size: .78rem;
@@ -389,8 +397,12 @@
 
     /* ── Print ───────────────────────────────────── */
     @media print {
-      @page { margin: 5px 0 0; }
+      @page { margin: 0; }
       body { background: #fff; margin: 0; }
+      .main-col, .side-col {
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+      }
       .page { box-shadow: none; max-width: none; }
       .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
@@ -700,7 +712,7 @@
       </div>
 
       <!-- Languages -->
-      <div class="section" style="break-before:page;padding-top:3rem">
+      <div class="section">
         <div class="section-title">Languages</div>
         <div class="lang-item">
           <span>English</span>
